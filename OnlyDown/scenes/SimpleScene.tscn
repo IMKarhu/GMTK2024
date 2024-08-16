@@ -1,10 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bukx2nu06olxv"]
+[gd_scene load_steps=4 format=3 uid="uid://bukx2nu06olxv"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_5m3fs"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t0ol2"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_x0cx8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dv1va"]
 
@@ -20,9 +18,8 @@ skeleton = NodePath("../..")
 [node name="Collision" type="CollisionShape3D" parent="Floor"]
 shape = SubResource("BoxShape3D_t0ol2")
 
-[node name="Player" type="RigidBody3D" parent="."]
+[node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.14001, 0)
-physics_material_override = SubResource("PhysicsMaterial_x0cx8")
 
 [node name="MainCamera" type="Camera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.282001, 3.34856)
