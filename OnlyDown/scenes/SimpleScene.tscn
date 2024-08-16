@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://bukx2nu06olxv"]
+[gd_scene load_steps=6 format=3 uid="uid://bukx2nu06olxv"]
+
+[ext_resource type="Script" path="res://src/Interact.gd" id="1_s71rd"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_5m3fs"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t0ol2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dv1va"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ssn3h"]
 
 [node name="MainNode" type="Node3D"]
 
@@ -19,17 +23,25 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_t0ol2")
 
 [node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.14001, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06621, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Player"]
+skeleton = NodePath("../..")
 
 [node name="MainCamera" type="Camera3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.282001, 3.34856)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.072753, 0.380347, 3.34856)
 
 [node name="Collision" type="CollisionShape3D" parent="Player"]
 shape = SubResource("BoxShape3D_dv1va")
 
-[node name="Mesh" type="MeshInstance3D" parent="Player"]
-mesh = SubResource("BoxMesh_5m3fs")
-skeleton = NodePath("../..")
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 33.2274, 0)
+transform = Transform3D(0.987256, 6.95625e-09, -0.15914, 0.0441907, -0.960673, 0.274145, -0.152882, -0.277684, -0.94843, 0, -0.941719, -27.3735)
+
+[node name="Node3D" type="Node3D" parent="." node_paths=PackedStringArray("camera")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14664, -2.45859)
+script = ExtResource("1_s71rd")
+meshes = Array[Mesh]([SubResource("BoxMesh_ssn3h")])
+camera = NodePath("../Player/MainCamera")
+
+[node name="Mesh" type="MeshInstance3D" parent="Node3D"]
+skeleton = NodePath("../../..")
