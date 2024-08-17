@@ -40,6 +40,10 @@ func _physics_process(delta):
 		setMovementDirection.emit(m_movementDirection)
 		setSpeed.emit(m_speed)
 		setAcceleration.emit(m_acceleration)
+	else:
+		setSpeed.emit(0)
+		setAcceleration.emit(0)
+		setVelocity.emit(Vector3.ZERO)
 
 func _input(event):
 	if event.is_action_pressed("changeForm"):
@@ -47,8 +51,6 @@ func _input(event):
 		
 	m_movementDirection.x = Input.get_action_strength("move_left") - Input.get_action_strength("move_right")
 	m_movementDirection.z = Input.get_action_strength("move_forward") - Input.get_action_strength("move_backwards")
-	#Input.get_vector("move_left", "move_right", "move_forward", "move_backwards")
-	print(m_movementDirection)
 
 func toggle_mesh():
 	if mesh_instance.mesh == currentMesh:
