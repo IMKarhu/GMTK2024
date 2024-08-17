@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://b4ri1tn737d6c"]
+[gd_scene load_steps=8 format=3 uid="uid://b4ri1tn737d6c"]
 
-[ext_resource type="PackedScene" uid="uid://uf18hxdpc23s" path="res://scenes/Player.tscn" id="2_kjlun"]
-[ext_resource type="PackedScene" uid="uid://b7opgnj3e2v7m" path="res://scenes/InteactableCube.tscn" id="2_o0bre"]
-[ext_resource type="PackedScene" uid="uid://duka1cvp4r67u" path="res://scenes/InteactableSphere.tscn" id="2_sasyx"]
+[ext_resource type="PackedScene" uid="uid://uf18hxdpc23s" path="res://scenes/Player.tscn" id="1_o8s5f"]
+[ext_resource type="PackedScene" uid="uid://b7opgnj3e2v7m" path="res://scenes/InteactableCube.tscn" id="2_ceek3"]
+[ext_resource type="PackedScene" uid="uid://duka1cvp4r67u" path="res://scenes/InteactableSphere.tscn" id="3_76c65"]
+[ext_resource type="PackedScene" uid="uid://dvbmnd1oo1ddc" path="res://scenes/Floor.tscn" id="4_jpn8l"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_6ofnf"]
 
@@ -14,17 +15,6 @@
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 33.2274, 0)
-
-[node name="Floor" type="MeshInstance3D" parent="."]
-transform = Transform3D(50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0)
-mesh = SubResource("BoxMesh_6ofnf")
-skeleton = NodePath("Collider")
-
-[node name="Collider" type="StaticBody3D" parent="Floor"]
-collision_mask = 3
-
-[node name="Shape" type="CollisionShape3D" parent="Floor/Collider"]
-shape = SubResource("BoxShape3D_4fphv")
 
 [node name="Wall" type="MeshInstance3D" parent="."]
 transform = Transform3D(-2.18557e-06, 0, 1, 0, 10, 0, -50, 0, -4.37114e-08, 25, 5, 0)
@@ -66,12 +56,14 @@ skeleton = NodePath("Collider")
 [node name="Shape" type="CollisionShape3D" parent="Wall4/Collider"]
 shape = SubResource("BoxShape3D_4fphv")
 
-[node name="Player" parent="." instance=ExtResource("2_kjlun")]
+[node name="Player" parent="." instance=ExtResource("1_o8s5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34312, 0)
 mesh2 = SubResource("CapsuleMesh_2pys2")
 
-[node name="InteactableCube" parent="." instance=ExtResource("2_o0bre")]
+[node name="InteactableCube" parent="." instance=ExtResource("2_ceek3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.17427, 1.49097, -8.84738)
 
-[node name="InteactableSphere" parent="." instance=ExtResource("2_sasyx")]
+[node name="InteactableSphere" parent="." instance=ExtResource("3_76c65")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.80092, 1.49097, -8.84738)
+
+[node name="Floor" parent="." instance=ExtResource("4_jpn8l")]
