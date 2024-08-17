@@ -1,11 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://ld53tljlh81y"]
+[gd_scene load_steps=7 format=3 uid="uid://ld53tljlh81y"]
 
 [ext_resource type="Script" path="res://src/Player.gd" id="1_t77la"]
 [ext_resource type="Script" path="res://src/CameraController.gd" id="2_08ip3"]
 [ext_resource type="Script" path="res://src/MovementController.gd" id="2_vkd70"]
 [ext_resource type="Script" path="res://src/MeshController.gd" id="3_sj8gh"]
-
-[sub_resource type="TorusMesh" id="TorusMesh_v8sfi"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_11skt"]
 
@@ -14,7 +12,6 @@
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_t77la")
-mesh2 = SubResource("TorusMesh_v8sfi")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_11skt")
@@ -51,4 +48,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.95593)
 [connection signal="setMovementDirection" from="." to="Controllers/MovementController" method="_on_setMovementDirection"]
 [connection signal="setSpeed" from="." to="Controllers/MovementController" method="_on_setSpeed"]
 [connection signal="setVelocity" from="." to="Controllers/MovementController" method="_on_setVelocity"]
+[connection signal="set_mesh" from="." to="Controllers/MeshController" method="set_mesh"]
 [connection signal="setCameraRotation" from="CameraRoot" to="Controllers/MovementController" method="_on_setCameraRotation"]

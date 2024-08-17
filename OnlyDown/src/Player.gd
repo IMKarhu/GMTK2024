@@ -1,13 +1,7 @@
 extends CharacterBody3D
 class_name Player
 
-@onready var currentMesh = $Mesh.mesh
-@export var mesh2: Mesh
-var mesh_instance: MeshInstance3D
-
-@onready var collision_shape = $Collision
-
-@onready var flagPacked = preload("res://scenes/Inteactable.tscn")
+signal set_mesh(mesh: Mesh)
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
@@ -23,9 +17,6 @@ var m_acceleration: float = 0.5
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-
-func _ready():
-	mesh_instance = get_child(0)
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -45,10 +36,7 @@ func _physics_process(delta):
 		setAcceleration.emit(0)
 		setVelocity.emit(Vector3(0,velocity.y,0))
 
-func _input(event):
-	if event.is_action_pressed("changeForm"):
-		toggle_mesh()
-
+func _input(_event):
 	m_movementDirection.x = Input.get_action_strength("move_left") - Input.get_action_strength("move_right")
 	m_movementDirection.z = Input.get_action_strength("move_forward") - Input.get_action_strength("move_backwards")
 
