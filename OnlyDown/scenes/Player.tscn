@@ -21,7 +21,7 @@ shape = SubResource("BoxShape3D_8daik")
 
 [node name="Controllers" type="Node" parent="."]
 
-[node name="MeshController" type="Node" parent="Controllers" node_paths=PackedStringArray("collision_shape", "mesh_instance")]
+[node name="MeshController" type="Node" parent="Controllers" node_paths=PackedStringArray("collision_shape", "mesh_instance") groups=["meshcontroller"]]
 script = ExtResource("3_sj8gh")
 collision_shape = NodePath("../../Collision")
 mesh_instance = NodePath("../../Mesh")

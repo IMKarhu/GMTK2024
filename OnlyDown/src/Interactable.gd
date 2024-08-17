@@ -1,7 +1,7 @@
 extends Node3D
 
 @onready var interaction_area: InteractionArea = $InteractionArea
-@onready var player = get_tree().get_first_node_in_group("player")
+@onready var mesh_controller = get_tree().get_first_node_in_group("meshcontroller")
 
 @export var mesh: Mesh
 
@@ -11,5 +11,4 @@ func _ready():
 
 # TODO: make it so it falls on the ground and loses ability to interact??
 func _on_interact():
-	#send mesh
-	pass
+	mesh_controller.change_to_mesh(mesh)
