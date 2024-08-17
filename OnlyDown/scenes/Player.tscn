@@ -21,10 +21,12 @@ mesh = SubResource("BoxMesh_11skt")
 [node name="Collision" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_8daik")
 
-[node name="MovementController" type="Node" parent="." node_paths=PackedStringArray("m_player", "m_mesh")]
+[node name="Controllers" type="Node" parent="."]
+
+[node name="MovementController" type="Node" parent="Controllers" node_paths=PackedStringArray("m_player", "m_mesh")]
 script = ExtResource("2_vkd70")
-m_player = NodePath("..")
-m_mesh = NodePath("../Mesh")
+m_player = NodePath("../..")
+m_mesh = NodePath("../../Mesh")
 
 [node name="CameraRoot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.563407, 0)
@@ -41,8 +43,8 @@ spring_length = 3.0
 [node name="MainCamera" type="Camera3D" parent="CameraRoot/CameraHorizontal/CameraVertical/SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.95593)
 
-[connection signal="setAcceleration" from="." to="MovementController" method="_on_setAcceleration"]
-[connection signal="setMovementDirection" from="." to="MovementController" method="_on_setMovementDirection"]
-[connection signal="setSpeed" from="." to="MovementController" method="_on_setSpeed"]
-[connection signal="setVelocity" from="." to="MovementController" method="_on_setVelocity"]
-[connection signal="setCameraRotation" from="CameraRoot" to="MovementController" method="_on_setCameraRotation"]
+[connection signal="setAcceleration" from="." to="Controllers/MovementController" method="_on_setAcceleration"]
+[connection signal="setMovementDirection" from="." to="Controllers/MovementController" method="_on_setMovementDirection"]
+[connection signal="setSpeed" from="." to="Controllers/MovementController" method="_on_setSpeed"]
+[connection signal="setVelocity" from="." to="Controllers/MovementController" method="_on_setVelocity"]
+[connection signal="setCameraRotation" from="CameraRoot" to="Controllers/MovementController" method="_on_setCameraRotation"]

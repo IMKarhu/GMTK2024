@@ -3,8 +3,8 @@
 Game about shapes and sizes.
 
 ## Controls
-- WASD to move
-- SPACE to jump
+- WASD to move - DONE
+- SPACE to jump - DONE
 - E to interact (change to the object)
 - F to toggle between objects
 
@@ -14,9 +14,9 @@ Game about shapes and sizes.
 
 
 ## Next:
-- Camera controls, niko
-    - orbit camera
-- interact, tero
+- Camera controls, niko - DONE
+    - orbit camera - DONE
+- interact, tero - WIP
     - what happens when we change?
         - Old shape gets left behind (better)
         - animantion
@@ -32,6 +32,7 @@ Game about shapes and sizes.
     - show current item +  what you can turn into
 - Intro/tutorial to the game
 - Better graphics also colors and shaders!
+
 
 ## Features
 
