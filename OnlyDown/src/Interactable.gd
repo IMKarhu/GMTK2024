@@ -11,4 +11,5 @@ func _ready():
 
 # TODO: make it so it falls on the ground and loses ability to interact??
 func _on_interact():
-	player.set_mesh.emit(mesh)
+	#send mesh
+	pass

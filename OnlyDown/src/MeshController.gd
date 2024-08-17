@@ -1,12 +1,12 @@
 extends Node
 class_name MeshController
 
-@onready var collision_shape = $Collision
+@export var collision_shape: CollisionShape3D
 
-@onready var mesh_instance = $Mesh
+@export var mesh_instance: MeshInstance3D
 @onready var flagPacked = preload("res://scenes/Inteactable.tscn")
 
-@export var meshes: Array[Mesh]
+var meshes: Array[Mesh]
 
 var _mesh: Mesh
 

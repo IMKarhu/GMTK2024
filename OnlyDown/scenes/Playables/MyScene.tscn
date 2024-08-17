@@ -75,5 +75,3 @@ mesh = SubResource("BoxMesh_xy750")
 [node name="Inteactable3" parent="." instance=ExtResource("2_ceek3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0456896, 1, -7.62502)
 mesh = SubResource("CylinderMesh_ar1be")
-
-[connection signal="set_mesh" from="Player" to="Player/Controllers/MeshController" method="set_mesh"]

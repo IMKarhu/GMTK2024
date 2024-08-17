@@ -1,8 +1,6 @@
 extends CharacterBody3D
 class_name Player
 
-signal set_mesh(mesh: Mesh)
-
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 

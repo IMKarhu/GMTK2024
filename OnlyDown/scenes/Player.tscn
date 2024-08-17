@@ -21,8 +21,10 @@ shape = SubResource("BoxShape3D_8daik")
 
 [node name="Controllers" type="Node" parent="."]
 
-[node name="MeshController" type="Node" parent="Controllers"]
+[node name="MeshController" type="Node" parent="Controllers" node_paths=PackedStringArray("collision_shape", "mesh_instance")]
 script = ExtResource("3_sj8gh")
+collision_shape = NodePath("../../Collision")
+mesh_instance = NodePath("../../Mesh")
 
 [node name="MovementController" type="Node" parent="Controllers" node_paths=PackedStringArray("m_player", "m_mesh")]
 script = ExtResource("2_vkd70")
@@ -48,5 +50,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.95593)
 [connection signal="setMovementDirection" from="." to="Controllers/MovementController" method="_on_setMovementDirection"]
 [connection signal="setSpeed" from="." to="Controllers/MovementController" method="_on_setSpeed"]
 [connection signal="setVelocity" from="." to="Controllers/MovementController" method="_on_setVelocity"]
-[connection signal="set_mesh" from="." to="Controllers/MeshController" method="set_mesh"]
 [connection signal="setCameraRotation" from="CameraRoot" to="Controllers/MovementController" method="_on_setCameraRotation"]
