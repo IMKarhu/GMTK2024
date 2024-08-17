@@ -27,7 +27,6 @@ func _physics_process(delta):
 	else:
 		m_player.velocity = Vector3.ZERO
 	
-	print(m_player.velocity)
 	var targetRotation = atan2(m_direction.x, m_direction.z) - m_player.rotation.y
 	m_mesh.rotation.y = lerp_angle(m_mesh.rotation.y, targetRotation, m_rotationSpeed * delta)
 	
