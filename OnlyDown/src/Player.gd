@@ -48,7 +48,7 @@ func _physics_process(delta):
 	else:
 		setSpeed.emit(0)
 		setAcceleration.emit(0)
-		setVelocity.emit(Vector3.ZERO)
+		setVelocity.emit(Vector3(0,velocity.y,0))
 
 func _input(event):
 	if event.is_action_pressed("changeForm"):
