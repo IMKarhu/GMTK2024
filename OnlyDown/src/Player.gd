@@ -7,7 +7,7 @@ var mesh_instance: MeshInstance3D
 
 @onready var collision_shape = $Collision
 
-@onready var flagPacked = preload("res://scenes/OldObject.tscn")
+@onready var flagPacked = preload("res://scenes/Inteactable.tscn")
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
@@ -27,6 +27,9 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
 	mesh_instance = get_child(0)
+	
+func _process(delta):
+	print(currentMesh)
 
 
 func _physics_process(delta):
@@ -65,13 +68,15 @@ func toggle_mesh():
 	else:
 		change_mesh(currentMesh)
 
-# Function to change the mesh
-func change_mesh(new_mesh: Mesh) -> void:
-	# Store current and new mesh before the change
-	var previous_mesh = currentMesh
-	mesh_instance.mesh = new_mesh
-	mesh2 = previous_mesh  # Previous currentMesh becomes mesh2
+# Function to change the mesh and spawn the old one if necessary
+func change_mesh(new_mesh: Mesh) -> void:	
+	# Update mesh2 only if it is not the same as new_mesh
+	if mesh2 != currentMesh:
+		mesh2 = currentMesh  # Previous currentMesh becomes mesh2
 	currentMesh = new_mesh  # The new mesh becomes currentMesh
+
+	# Update the mesh instance and collision shape
+	mesh_instance.mesh = new_mesh
 	update_collision_shape(new_mesh)
 
 func remove_numeric_suffix(name: String) -> String:
@@ -90,6 +95,7 @@ func change_to_mesh(new_mesh: Mesh) -> void:
 
 	if mesh2 != null:
 		mesh2_name = remove_numeric_suffix(mesh2.to_string())
+		spawn_oldMesh(currentMesh)
 
 	# Avoid changing to the same mesh
 	if new_name == current_name or new_name == mesh2_name:
