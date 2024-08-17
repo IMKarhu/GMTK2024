@@ -7,6 +7,8 @@ var mesh_instance: MeshInstance3D
 
 @onready var collision_shape = $Collision
 
+@onready var flagPacked = preload("res://scenes/OldObject.tscn")
+
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
@@ -52,7 +54,12 @@ func _input(event):
 	m_movementDirection.x = Input.get_action_strength("move_left") - Input.get_action_strength("move_right")
 	m_movementDirection.z = Input.get_action_strength("move_forward") - Input.get_action_strength("move_backwards")
 
+# Function to toggle between meshes
 func toggle_mesh():
+	if mesh2 == null:
+		return
+
+	# Check if currentMesh should be swapped with mesh2
 	if mesh_instance.mesh == currentMesh:
 		change_mesh(mesh2)
 	else:
@@ -60,21 +67,46 @@ func toggle_mesh():
 
 # Function to change the mesh
 func change_mesh(new_mesh: Mesh) -> void:
+	# Store current and new mesh before the change
+	var previous_mesh = currentMesh
 	mesh_instance.mesh = new_mesh
+	mesh2 = previous_mesh  # Previous currentMesh becomes mesh2
+	currentMesh = new_mesh  # The new mesh becomes currentMesh
 	update_collision_shape(new_mesh)
 
-	# Function to change the mesh
+func remove_numeric_suffix(name: String) -> String:
+	# Find the position of the '#' character
+	var index = name.find("#")
+	# If found, return the substring before it; otherwise, return the original name
+	if index != -1:
+		return name.substr(0, index)
+	return name
+
+# Function to change to a specific mesh, avoiding duplicates
 func change_to_mesh(new_mesh: Mesh) -> void:
-	mesh_instance.mesh = new_mesh
-	mesh2 = new_mesh
-	update_collision_shape(new_mesh)
-	# @TODO: Add it so you can't change to the object you already posess
-	#if new_mesh == currentMesh or new_mesh == mesh2:
-	#	mesh_instance.mesh = new_mesh
-	#	currentMesh = new_mesh
-	#	update_collision_shape(new_mesh)
-	#else:
-	#	print("Can't change to mesh",new_mesh, "already possible")
+	var new_name = remove_numeric_suffix(new_mesh.to_string())
+	var current_name = remove_numeric_suffix(currentMesh.to_string())
+	var mesh2_name = ''
+
+	if mesh2 != null:
+		mesh2_name = remove_numeric_suffix(mesh2.to_string())
+
+	# Avoid changing to the same mesh
+	if new_name == current_name or new_name == mesh2_name:
+		print("Trying to change to the same mesh")
+		return
+
+	# Perform the mesh change, update states correctly
+	change_mesh(new_mesh)
+
+# @TODO: Make it so it spawns the old mesh to the scene
+func spawn_oldMesh(oldMesh: Mesh) -> void:
+	var flag = flagPacked.instantiate()
+	flag.mesh = oldMesh
+	var newPos = Vector3(self.global_position.x, self.global_position.y, self.global_position.z - 1)
+	flag.set_position(newPos)
+	flag.scale = Vector3(0.5, 0.5, 0.5)
+	get_tree().get_root().add_child(flag)
 
 # @TODO: For now this only works with simple shapes need to modify this later if time
 func update_collision_shape(new_mesh: Mesh) -> void:
@@ -92,11 +124,12 @@ func update_collision_shape(new_mesh: Mesh) -> void:
 		new_shape.height = (new_mesh as CapsuleMesh).height
 	elif new_mesh is CylinderMesh:
 		new_shape = CylinderShape3D.new()
-		new_shape.radius = (new_mesh as CylinderMesh).radius
+		new_shape.radius = (new_mesh as CylinderMesh).bottom_radius
 		new_shape.height = (new_mesh as CylinderMesh).height
 
 	if new_shape:
 		collision_shape.shape = new_shape
+	#print(collision_shape.shape)
 		
 func is_movement() -> bool:
 	return abs(m_movementDirection.x) > 0 or abs(m_movementDirection.z) > 0

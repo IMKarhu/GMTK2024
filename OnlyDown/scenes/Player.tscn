@@ -6,7 +6,7 @@
 
 [sub_resource type="TorusMesh" id="TorusMesh_v8sfi"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_7xga3"]
+[sub_resource type="BoxMesh" id="BoxMesh_11skt"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8daik"]
 
@@ -16,7 +16,7 @@ script = ExtResource("1_t77la")
 mesh2 = SubResource("TorusMesh_v8sfi")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_7xga3")
+mesh = SubResource("BoxMesh_11skt")
 
 [node name="Collision" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_8daik")

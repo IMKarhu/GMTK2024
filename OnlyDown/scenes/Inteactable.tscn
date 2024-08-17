@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7opgnj3e2v7m"]
+
+[ext_resource type="Script" path="res://src/Interactable.gd" id="1_xyvph"]
+[ext_resource type="PackedScene" uid="uid://bni5l0q0lf7rp" path="res://scenes/InteractionArea.tscn" id="2_wkhm4"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3k6x4"]
+
+[node name="Inteactable" type="Node3D"]
+script = ExtResource("1_xyvph")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+
+[node name="InteractionArea" parent="." instance=ExtResource("2_wkhm4")]
+action_name = "Cube"
+
+[node name="Collision" type="CollisionShape3D" parent="InteractionArea"]
+shape = SubResource("SphereShape3D_3k6x4")

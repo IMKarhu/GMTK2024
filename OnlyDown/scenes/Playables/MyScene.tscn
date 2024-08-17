@@ -1,15 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://b4ri1tn737d6c"]
+[gd_scene load_steps=9 format=3 uid="uid://b4ri1tn737d6c"]
 
-[ext_resource type="PackedScene" uid="uid://ld53tljlh81y" path="res://scenes/Player.tscn" id="1_o8s5f"]
-[ext_resource type="PackedScene" uid="uid://b7opgnj3e2v7m" path="res://scenes/InteactableCube.tscn" id="2_ceek3"]
-[ext_resource type="PackedScene" uid="uid://duka1cvp4r67u" path="res://scenes/InteactableSphere.tscn" id="3_76c65"]
+[ext_resource type="PackedScene" uid="uid://uf18hxdpc23s" path="res://scenes/Player.tscn" id="1_o8s5f"]
+[ext_resource type="PackedScene" uid="uid://b7opgnj3e2v7m" path="res://scenes/Inteactable.tscn" id="2_ceek3"]
 [ext_resource type="PackedScene" uid="uid://dvbmnd1oo1ddc" path="res://scenes/Floor.tscn" id="4_jpn8l"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_6ofnf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4fphv"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_2pys2"]
+[sub_resource type="BoxMesh" id="BoxMesh_s5ytg"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_v83j1"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_54v0d"]
 
 [node name="MainNode" type="Node3D"]
 
@@ -58,12 +61,18 @@ shape = SubResource("BoxShape3D_4fphv")
 
 [node name="Player" parent="." instance=ExtResource("1_o8s5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34312, 0)
-mesh2 = SubResource("CapsuleMesh_2pys2")
-
-[node name="InteactableCube" parent="." instance=ExtResource("2_ceek3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.17427, 1.49097, -8.84738)
-
-[node name="InteactableSphere" parent="." instance=ExtResource("3_76c65")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.80092, 1.49097, -8.84738)
+mesh2 = null
 
 [node name="Floor" parent="." instance=ExtResource("4_jpn8l")]
+
+[node name="Inteactable" parent="." instance=ExtResource("2_ceek3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, -5)
+mesh = SubResource("BoxMesh_s5ytg")
+
+[node name="Inteactable2" parent="." instance=ExtResource("2_ceek3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1, -5)
+mesh = SubResource("SphereMesh_v83j1")
+
+[node name="Inteactable3" parent="." instance=ExtResource("2_ceek3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0456896, 1, -7.62502)
+mesh = SubResource("CylinderMesh_54v0d")
