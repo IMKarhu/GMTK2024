@@ -13,6 +13,8 @@ var m_verticalSensitivity: float = 0.05
 var m_horizontalAcceleration: float = 15
 var m_verticalAcceleration: float = 15
 
+var m_min: float = -55
+var m_max: float = 60
 
 
 # Called when the node enters the scene tree for the first time.
@@ -34,5 +36,6 @@ func _input(event: InputEvent):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	m_cameraHorizontal.rotation_degrees.x = lerp(m_cameraHorizontal.rotation_degrees.x, m_Horizontal, m_horizontalAcceleration * delta)
-	m_cameraVertical.rotation_degrees.y = lerp(m_cameraVertical.rotation_degrees.y, m_vertical, m_verticalAcceleration * delta)
+	m_vertical = clamp(m_vertical, m_min, m_max)
+	m_cameraHorizontal.rotation_degrees.y = lerp(m_cameraHorizontal.rotation_degrees.y, m_Horizontal, m_horizontalAcceleration * delta)
+	m_cameraVertical.rotation_degrees.x = lerp(m_cameraVertical.rotation_degrees.x, m_vertical, m_verticalAcceleration * delta)
