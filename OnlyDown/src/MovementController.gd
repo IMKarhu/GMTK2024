@@ -5,6 +5,9 @@ extends Node
 @export var m_mesh: MeshInstance3D
 @export var m_rotationSpeed: float = 8
 
+## COSNTANTS ##
+
+
 ## VARIABLES ##
 var m_direction: Vector3
 var m_velocity: Vector3
@@ -13,14 +16,18 @@ var m_speed: float
 var m_cameraRotation: float = 0
 
 
+
 func _physics_process(delta):
 	m_velocity.x = m_speed * m_direction.normalized().x
 	m_velocity.z = m_speed * m_direction.normalized().z
 	
-	m_player.velocity = m_player.velocity.lerp(m_velocity, m_acceleration * delta)
+	m_player.velocity = m_player.velocity.lerp(m_velocity, delta)
 	if not m_velocity.is_zero_approx():
 		m_player.move_and_slide()
+	else:
+		m_player.velocity = Vector3.ZERO
 	
+	print(m_player.velocity)
 	var targetRotation = atan2(m_direction.x, m_direction.z) - m_player.rotation.y
 	m_mesh.rotation.y = lerp_angle(m_mesh.rotation.y, targetRotation, m_rotationSpeed * delta)
 	
