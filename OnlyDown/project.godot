@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 InteractionManager="*res://scenes/InteractionManager.tscn"
-OldObject="*res://scenes/OldObject.tscn"
 
 [input]
 
