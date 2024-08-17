@@ -4,7 +4,7 @@ signal setCameraRotation(_m_cameraRotation: float)
 
 @onready var m_cameraHorizontal = $CameraHorizontal
 @onready var m_cameraVertical = $CameraHorizontal/CameraVertical
-@onready var m_camera = $CameraHorizontal/CameraVertical/MainCamera
+@onready var m_camera = $CameraHorizontal/CameraVertical/SpringArm3D/MainCamera
 
 var m_Horizontal: float = 0
 var m_vertical: float = 0
