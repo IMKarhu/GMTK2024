@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b4ri1tn737d6c"]
+[gd_scene load_steps=9 format=3 uid="uid://b4ri1tn737d6c"]
 
 [ext_resource type="PackedScene" uid="uid://ld53tljlh81y" path="res://scenes/Player.tscn" id="1_o8s5f"]
 [ext_resource type="PackedScene" uid="uid://b7opgnj3e2v7m" path="res://scenes/Inteactable.tscn" id="2_ceek3"]
@@ -7,6 +7,12 @@
 [sub_resource type="BoxMesh" id="BoxMesh_6ofnf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4fphv"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_u0irn"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xy750"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ar1be"]
 
 [node name="MainNode" type="Node3D"]
 
@@ -60,11 +66,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34312, 0)
 
 [node name="Inteactable" parent="." instance=ExtResource("2_ceek3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, -5)
+mesh = SubResource("SphereMesh_u0irn")
 
 [node name="Inteactable2" parent="." instance=ExtResource("2_ceek3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1, -5)
+mesh = SubResource("BoxMesh_xy750")
 
 [node name="Inteactable3" parent="." instance=ExtResource("2_ceek3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0456896, 1, -7.62502)
+mesh = SubResource("CylinderMesh_ar1be")
 
 [connection signal="set_mesh" from="Player" to="Player/Controllers/MeshController" method="set_mesh"]

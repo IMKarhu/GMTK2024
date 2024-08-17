@@ -21,13 +21,13 @@ shape = SubResource("BoxShape3D_8daik")
 
 [node name="Controllers" type="Node" parent="."]
 
+[node name="MeshController" type="Node" parent="Controllers"]
+script = ExtResource("3_sj8gh")
+
 [node name="MovementController" type="Node" parent="Controllers" node_paths=PackedStringArray("m_player", "m_mesh")]
 script = ExtResource("2_vkd70")
 m_player = NodePath("../..")
 m_mesh = NodePath("../../Mesh")
-
-[node name="MeshController" type="Node" parent="Controllers"]
-script = ExtResource("3_sj8gh")
 
 [node name="CameraRoot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.563407, 0)
