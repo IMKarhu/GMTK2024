@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://ld53tljlh81y"]
+[gd_scene load_steps=7 format=3 uid="uid://ld53tljlh81y"]
 
 [ext_resource type="Script" path="res://src/Player.gd" id="1_t77la"]
 [ext_resource type="Script" path="res://src/CameraController.gd" id="2_08ip3"]
+[ext_resource type="Script" path="res://src/MovementController.gd" id="2_vkd70"]
 
 [sub_resource type="TorusMesh" id="TorusMesh_v8sfi"]
 
@@ -20,6 +21,11 @@ mesh = SubResource("BoxMesh_7xga3")
 [node name="Collision" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_8daik")
 
+[node name="MovementController" type="Node" parent="." node_paths=PackedStringArray("m_player", "m_mesh")]
+script = ExtResource("2_vkd70")
+m_player = NodePath("..")
+m_mesh = NodePath("../Mesh")
+
 [node name="CameraRoot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.563407, 0)
 script = ExtResource("2_08ip3")
@@ -29,7 +35,14 @@ script = ExtResource("2_08ip3")
 [node name="CameraVertical" type="Node3D" parent="CameraRoot/CameraHorizontal"]
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CameraRoot/CameraHorizontal/CameraVertical"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 spring_length = 3.0
 
 [node name="MainCamera" type="Camera3D" parent="CameraRoot/CameraHorizontal/CameraVertical/SpringArm3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.349)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.95593)
+
+[connection signal="setAcceleration" from="." to="MovementController" method="_on_setAcceleration"]
+[connection signal="setMovementDirection" from="." to="MovementController" method="_on_setMovementDirection"]
+[connection signal="setSpeed" from="." to="MovementController" method="_on_setSpeed"]
+[connection signal="setVelocity" from="." to="MovementController" method="_on_setVelocity"]
+[connection signal="setCameraRotation" from="CameraRoot" to="MovementController" method="_on_setCameraRotation"]

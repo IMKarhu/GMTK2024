@@ -10,7 +10,14 @@ var mesh_instance: MeshInstance3D
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
-@export var m_camera: Camera3D
+signal setMovementDirection(_m_movementDirection: Vector3)
+signal setVelocity(_m_velocity: Vector3)
+signal setSpeed(_m_speed: float)
+signal setAcceleration(_m_acceleration: float)
+
+var m_movementDirection: Vector3
+var m_speed: float = 10
+var m_acceleration: float = 0.5
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -19,7 +26,6 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _ready():
 	mesh_instance = get_child(0)
 
-			
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -29,23 +35,20 @@ func _physics_process(delta):
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backwards")
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-
-	move_and_slide()
+		
+	if is_movement():
+		setMovementDirection.emit(m_movementDirection)
+		setSpeed.emit(m_speed)
+		setAcceleration.emit(m_acceleration)
 
 func _input(event):
 	if event.is_action_pressed("changeForm"):
 		toggle_mesh()
+		
+	m_movementDirection.x = Input.get_action_strength("move_left") - Input.get_action_strength("move_right")
+	m_movementDirection.z = Input.get_action_strength("move_forward") - Input.get_action_strength("move_backwards")
+	#Input.get_vector("move_left", "move_right", "move_forward", "move_backwards")
+	print(m_movementDirection)
 
 func toggle_mesh():
 	if mesh_instance.mesh == currentMesh:
@@ -92,3 +95,6 @@ func update_collision_shape(new_mesh: Mesh) -> void:
 
 	if new_shape:
 		collision_shape.shape = new_shape
+		
+func is_movement() -> bool:
+	return abs(m_movementDirection.x) > 0 or abs(m_movementDirection.z) > 0

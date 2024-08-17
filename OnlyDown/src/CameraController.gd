@@ -1,5 +1,7 @@
 extends Node
 
+signal setCameraRotation(_m_cameraRotation: float)
+
 @onready var m_cameraHorizontal = $CameraHorizontal
 @onready var m_cameraVertical = $CameraHorizontal/CameraVertical
 @onready var m_camera = $CameraHorizontal/CameraVertical/MainCamera
@@ -39,3 +41,5 @@ func _process(delta):
 	m_vertical = clamp(m_vertical, m_min, m_max)
 	m_cameraHorizontal.rotation_degrees.y = lerp(m_cameraHorizontal.rotation_degrees.y, m_Horizontal, m_horizontalAcceleration * delta)
 	m_cameraVertical.rotation_degrees.x = lerp(m_cameraVertical.rotation_degrees.x, m_vertical, m_verticalAcceleration * delta)
+	
+	setCameraRotation.emit(m_cameraHorizontal.rotation.y)
