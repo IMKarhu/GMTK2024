@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://uf18hxdpc23s"]
+
+[ext_resource type="Script" path="res://src/Player.gd" id="1_t77la"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_v8sfi"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_7xga3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8daik"]
+
+[node name="Player" type="CharacterBody3D" groups=["player"]]
+collision_layer = 2
+script = ExtResource("1_t77la")
+mesh2 = SubResource("TorusMesh_v8sfi")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_7xga3")
+
+[node name="MainCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.349)
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_8daik")
