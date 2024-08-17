@@ -27,10 +27,6 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
 	mesh_instance = get_child(0)
-	
-func _process(delta):
-	print(currentMesh)
-
 
 func _physics_process(delta):
 	# Add the gravity.

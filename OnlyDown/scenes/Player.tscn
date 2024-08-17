@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://ld53tljlh81y"]
+[gd_scene load_steps=8 format=3 uid="uid://ld53tljlh81y"]
 
 [ext_resource type="Script" path="res://src/Player.gd" id="1_t77la"]
 [ext_resource type="Script" path="res://src/CameraController.gd" id="2_08ip3"]
 [ext_resource type="Script" path="res://src/MovementController.gd" id="2_vkd70"]
+[ext_resource type="Script" path="res://src/MeshController.gd" id="3_sj8gh"]
 
 [sub_resource type="TorusMesh" id="TorusMesh_v8sfi"]
 
@@ -29,6 +30,7 @@ m_player = NodePath("../..")
 m_mesh = NodePath("../../Mesh")
 
 [node name="MeshController" type="Node" parent="Controllers"]
+script = ExtResource("3_sj8gh")
 
 [node name="CameraRoot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.563407, 0)
