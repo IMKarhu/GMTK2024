@@ -2,6 +2,33 @@
 
 Game about shapes and sizes.
 
+## Current:
+- Walking, jumping
+
+## Next:
+- Camera controls, niko
+    - orbit camera
+- interact, tero
+    - what happens when we change?
+        - object that we turn to get removed? 
+        - Old shape gets left behind (better)
+        - animantion
+- change shapes with numbers (@TODO figure how many you can have), tero
+- Size up/down
+    - only in certain scenarious(no cheesy weesing)
+- LEVES / Level ideas
+- Puzzles?
+    - pressure plates
+    - platforming?
+    - 
+- Hotbar???
+    - show current item +  what you can turn into
+- Intro/tutorial to the game
+- Better graphics also colors and shaders!
+
+
+
+
 ## Features
 
 - Shape shifting
