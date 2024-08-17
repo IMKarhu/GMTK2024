@@ -15,8 +15,6 @@ var m_acceleration: float
 var m_speed: float
 var m_cameraRotation: float = 0
 
-
-
 func _physics_process(delta):
 	m_velocity.x = m_speed * m_direction.normalized().x
 	m_velocity.z = m_speed * m_direction.normalized().z
@@ -25,7 +23,7 @@ func _physics_process(delta):
 	if not m_velocity.is_zero_approx():
 		m_player.move_and_slide()
 	else:
-		m_player.velocity = Vector3.ZERO
+		m_player.velocity = Vector3(0, m_player.velocity.y, 0)
 	
 	var targetRotation = atan2(m_direction.x, m_direction.z) - m_player.rotation.y
 	m_mesh.rotation.y = lerp_angle(m_mesh.rotation.y, targetRotation, m_rotationSpeed * delta)
