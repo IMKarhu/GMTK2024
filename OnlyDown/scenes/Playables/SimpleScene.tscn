@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bukx2nu06olxv"]
+
+[ext_resource type="PackedScene" uid="uid://uf18hxdpc23s" path="res://scenes/Player.tscn" id="1_ur4ip"]
+[ext_resource type="PackedScene" uid="uid://dvbmnd1oo1ddc" path="res://scenes/Floor.tscn" id="2_h4w3o"]
+
+[node name="MainNode" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 33.2274, 0)
+
+[node name="Player" parent="." instance=ExtResource("1_ur4ip")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12027, 0)
+
+[node name="Floor" parent="." instance=ExtResource("2_h4w3o")]

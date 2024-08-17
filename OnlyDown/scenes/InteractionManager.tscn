@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bs52q0wujsqum"]
+
+[ext_resource type="Script" path="res://src/InteractionManager.gd" id="1_qjrwi"]
+
+[node name="InteractionManager" type="Node3D"]
+script = ExtResource("1_qjrwi")
+
+[node name="Label" type="Label3D" parent="."]
+text = "[E] to interact"
