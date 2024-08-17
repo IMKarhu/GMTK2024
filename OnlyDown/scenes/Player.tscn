@@ -28,6 +28,8 @@ script = ExtResource("2_vkd70")
 m_player = NodePath("../..")
 m_mesh = NodePath("../../Mesh")
 
+[node name="MeshController" type="Node" parent="Controllers"]
+
 [node name="CameraRoot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.563407, 0)
 script = ExtResource("2_08ip3")
