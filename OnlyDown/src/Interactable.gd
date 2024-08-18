@@ -5,6 +5,18 @@ extends Node3D
 
 @export var mesh: Mesh
 
+var amplitude = 0.5  # The height of the wave
+var frequency = 1.0   # The speed of the wave
+var initial_y = 1.5
+var time_passed = 0.0
+var min_y = 1.5
+
+func _process(delta):
+	time_passed += delta
+	var y = initial_y + amplitude * (sin(frequency * time_passed)+1)
+	y = max(y, min_y)
+	position.y = y
+
 func _ready():
 	$Mesh.mesh = mesh
 	interaction_area.interact = Callable(self, "_on_interact")
