@@ -10,21 +10,15 @@ Game about shapes and sizes.
 ## Current:
 - Walking, jumping
 - Simple form change
+- Size change
 
 ## Next:
-- interact, tero - DONE
-    - what happens when we change?
-        - Old shape gets left behind
-        - animantion
-- Size up/down, niko - IN PROGRESS
-    - only in certain scenarious(no cheesy weesing)
+- Intro/tutorial to the game
 - LEVES / Level ideas
 - Puzzles?
     - pressure plates
     - platforming?
-- Intro/tutorial to the game
 - Better graphics also colors and shaders!
-
 
 ## Features
 
@@ -38,7 +32,6 @@ But there is a problem to move from one floor to another you have to find a new 
 
 @TODO
 There are differend puzzels maybe jumping and some other things we will figure this as we go :D
-
 
 Peli jossa vaihdat muotoa ja selvität puzzleja.
 
