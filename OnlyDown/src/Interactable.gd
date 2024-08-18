@@ -11,4 +11,4 @@ func _ready():
 
 # TODO: make it so it falls on the ground and loses ability to interact??
 func _on_interact():
-	mesh_controller.change_to_mesh(mesh)
+	mesh_controller.addMeshToDic(mesh.to_string(), mesh)
