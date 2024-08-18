@@ -6,30 +6,22 @@ Game about shapes and sizes.
 - WASD to move - DONE
 - SPACE to jump - DONE
 - E to interact (change to the object)
-- F to toggle between objects
 
 ## Current:
 - Walking, jumping
 - Simple form change
 
-
 ## Next:
-- Camera controls, niko - DONE
-    - orbit camera - DONE
-- interact, tero - WIP
+- interact, tero - DONE
     - what happens when we change?
-        - Old shape gets left behind (better)
+        - Old shape gets left behind
         - animantion
-- change shapes with numbers (@TODO figure how many you can have)
-    - desided two would be a good to have so going with that
-- Size up/down
+- Size up/down, niko - IN PROGRESS
     - only in certain scenarious(no cheesy weesing)
 - LEVES / Level ideas
 - Puzzles?
     - pressure plates
     - platforming?
-- Hotbar???
-    - show current item +  what you can turn into
 - Intro/tutorial to the game
 - Better graphics also colors and shaders!
 
@@ -51,9 +43,3 @@ There are differend puzzels maybe jumping and some other things we will figure t
 Peli jossa vaihdat muotoa ja selvität puzzleja.
 
 Muotojen avulla voit liikkua huoneiden välillä 
-## Controls
-
-@TODO figure out
-## Shape shifting
-- with numbers 1-5???
-- size Q to small E to  big???
