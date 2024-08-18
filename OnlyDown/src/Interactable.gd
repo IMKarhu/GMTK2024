@@ -1,7 +1,8 @@
 extends Node3D
 
 @onready var interaction_area: InteractionArea = $InteractionArea
-@onready var mesh_controller = get_tree().get_first_node_in_group("meshcontroller")
+@onready var player = get_tree().get_first_node_in_group("player")
+@onready var mesh_instace = $Mesh
 
 @export var mesh: Mesh
 
@@ -23,4 +24,8 @@ func _ready():
 
 # TODO: make it so it falls on the ground and loses ability to interact??
 func _on_interact():
-	mesh_controller.change_to_mesh(mesh)
+	var player_mesh_instance = player.get_child(0)
+	var player_mesh = player_mesh_instance.mesh
+	player_mesh_instance.change_mesh(mesh)
+	mesh_instace.mesh = player_mesh
+	mesh = player_mesh

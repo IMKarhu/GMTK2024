@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://src/MovementController.gd" id="2_vkd70"]
 [ext_resource type="Script" path="res://src/MeshController.gd" id="3_sj8gh"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_11skt"]
+[sub_resource type="BoxMesh" id="BoxMesh_smm4i"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8daik"]
 
@@ -13,18 +13,15 @@
 collision_layer = 2
 script = ExtResource("1_t77la")
 
-[node name="Mesh" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_11skt")
+[node name="Mesh" type="MeshInstance3D" parent="." node_paths=PackedStringArray("collision_shape")]
+mesh = SubResource("BoxMesh_smm4i")
+script = ExtResource("3_sj8gh")
+collision_shape = NodePath("../Collision")
 
 [node name="Collision" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_8daik")
 
 [node name="Controllers" type="Node" parent="."]
-
-[node name="MeshController" type="Node" parent="Controllers" node_paths=PackedStringArray("collision_shape", "mesh_instance") groups=["meshcontroller"]]
-script = ExtResource("3_sj8gh")
-collision_shape = NodePath("../../Collision")
-mesh_instance = NodePath("../../Mesh")
 
 [node name="MovementController" type="Node" parent="Controllers" node_paths=PackedStringArray("m_player", "m_mesh")]
 script = ExtResource("2_vkd70")

@@ -25,7 +25,7 @@ operation = 2
 size = Vector3(0.263184, 0.166382, 1)
 
 [node name="Hole" type="CSGSphere3D" parent="CSGCombiner3D/Floor"]
-transform = Transform3D(0.0299999, 4.23594e-05, -8.43646e-05, -0.000107367, 17.945, 0.00210599, 8.43695e-05, -0.000787216, 0.0299998, 0.180717, -2.73021, -0.0766707)
+transform = Transform3D(0.0329997, 0.0707205, -9.28013e-05, -0.000118102, 19.7599, 1.44781e-06, 9.28059e-05, -0.00066805, 0.0329999, 0.180724, 0.367266, -0.0768066)
 operation = 2
 
 [node name="Back" type="CSGBox3D" parent="CSGCombiner3D"]

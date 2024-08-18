@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://0oqd8n63li8q"]
+
+[ext_resource type="PackedScene" uid="uid://dod4nl3a82nxr" path="res://scenes/Playables/Level1.tscn" id="2_ww36j"]
+[ext_resource type="PackedScene" uid="uid://b4ri1tn737d6c" path="res://scenes/Playables/MyScene.tscn" id="3_gke11"]
+[ext_resource type="PackedScene" uid="uid://bukx2nu06olxv" path="res://scenes/Playables/SimpleScene.tscn" id="4_g7hv2"]
+
+[sub_resource type="GDScript" id="GDScript_6ofmt"]
+script/source = "extends Node
+class_name LevelManager
+
+@export var scenes: Array[PackedScene] = []
+
+var current_index: int = 0
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	if scenes.size() > 0:
+		mesh = meshes[current_index]
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[node name="LevelManager" type="Area3D"]
+script = SubResource("GDScript_6ofmt")
+scenes = Array[PackedScene]([ExtResource("2_ww36j"), ExtResource("3_gke11"), ExtResource("4_g7hv2")])
