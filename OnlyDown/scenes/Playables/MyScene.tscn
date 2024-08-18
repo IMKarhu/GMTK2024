@@ -77,5 +77,10 @@ mesh = SubResource("BoxMesh_xy750")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0456896, 1, -7.62502)
 mesh = SubResource("CylinderMesh_ar1be")
 
-[node name="Button" parent="." instance=ExtResource("4_hdm3y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.4952, 2.2997, 0)
+[node name="ShrinkButton" parent="." instance=ExtResource("4_hdm3y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.4952, 1.15675, 0)
+
+[node name="GrowButton" parent="." instance=ExtResource("4_hdm3y")]
+transform = Transform3D(-0.0510286, 0, 0.998697, 0, 1, 0, -0.998697, 0, -0.0510286, -15.9367, 0.858643, 0)
+Default_Operation = 0
+maxGrowth = Vector3(2, 2, 2)

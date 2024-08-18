@@ -16,6 +16,7 @@ var m_acceleration: float = 0.5
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
@@ -40,3 +41,6 @@ func _input(_event):
 
 func is_movement() -> bool:
 	return abs(m_movementDirection.x) > 0 or abs(m_movementDirection.z) > 0
+
+func setScale(_scale: Vector3):
+	scale -= _scale

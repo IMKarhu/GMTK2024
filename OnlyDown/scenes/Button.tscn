@@ -1,22 +1,37 @@
-[gd_scene load_steps=4 format=3 uid="uid://dej1gkscseh0b"]
+[gd_scene load_steps=8 format=3 uid="uid://dej1gkscseh0b"]
+
+[ext_resource type="Script" path="res://src/Button.gd" id="1_fsp2c"]
+[ext_resource type="PackedScene" uid="uid://13lum5mkmnyh" path="res://Mesh/hollow_cube.glb" id="2_cbbj0"]
+[ext_resource type="PackedScene" uid="uid://bni5l0q0lf7rp" path="res://scenes/InteractionArea.tscn" id="3_2cg4o"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_jcgwj"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_8tu13"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_45hme"]
+albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fpsef"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_wbrxo"]
+
 [node name="Button" type="StaticBody3D"]
-collision_layer = 2
+script = ExtResource("1_fsp2c")
+Default_Operation = 1
+maxGrowth = Vector3(2, 2, 2)
 
 [node name="Button" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.289536, 0, 0, 0, 0.254347, 0, 0, 0, 0.100709, 0, 0, 0)
+transform = Transform3D(0.289536, 0, 0, 0, 0.268137, 0, 0, 0, 0.100709, 0, -0.00360905, 0.130251)
 mesh = SubResource("BoxMesh_jcgwj")
+surface_material_override/0 = SubResource("StandardMaterial3D_45hme")
 
-[node name="ButtonCase" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_8tu13")
+[node name="hollow_cube" parent="." instance=ExtResource("2_cbbj0")]
+transform = Transform3D(0.00661518, 0, -0.283585, 0, 0.230472, 0, 0.194395, 0, 0.00965029, -0.00837266, -0.0256962, -0.0618349)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_fpsef")
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
+[node name="InteractionArea" parent="." instance=ExtResource("3_2cg4o")]
+action_name = "Interact"
+
+[node name="Collision" type="CollisionShape3D" parent="InteractionArea"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.000767112, -2.98023e-08, -0.00274915)
+shape = SubResource("SphereShape3D_wbrxo")
