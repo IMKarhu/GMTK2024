@@ -1,7 +1,63 @@
-[gd_scene load_steps=2 format=3 uid="uid://b8s4r8ll0yijm"]
+[gd_scene load_steps=7 format=3 uid="uid://dod4nl3a82nxr"]
 
-[ext_resource type="PackedScene" uid="uid://dvbmnd1oo1ddc" path="res://scenes/Floor.tscn" id="1_ilrme"]
+[ext_resource type="Material" uid="uid://d3drd2k25q1ls" path="res://materials/Green.tres" id="2_fqvu5"]
+[ext_resource type="PackedScene" uid="uid://b7opgnj3e2v7m" path="res://scenes/Inteactable.tscn" id="2_p7tl4"]
+[ext_resource type="PackedScene" uid="uid://ld53tljlh81y" path="res://scenes/Player.tscn" id="3_urytb"]
+[ext_resource type="Environment" uid="uid://ccn1cl0ss4sus" path="res://materials/world_environment.tres" id="4_kdfhr"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_fajhk"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_6gftl"]
 
 [node name="Level1" type="Node3D"]
 
-[node name="Floor" parent="." instance=ExtResource("1_ilrme")]
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+material_override = ExtResource("2_fqvu5")
+use_collision = true
+
+[node name="Floor" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(39.9998, -8.94854e-05, 0.112493, 0.00377629, 0.999998, -0.0701892, -0.112486, 0.00175499, 39.9998, -7.22027, -0.000709322, 3.09193)
+size = Vector3(0.637146, 1, 0.647368)
+
+[node name="Hole2" type="CSGBox3D" parent="CSGCombiner3D/Floor"]
+transform = Transform3D(0.999996, 0.000463945, 5.28749e-05, -0.00357889, -7.30312, 0.683114, 0.00281232, -0.170778, -0.0182577, 0.122432, 0.0258157, 0.160603)
+operation = 2
+size = Vector3(0.263184, 0.166382, 1)
+
+[node name="Hole" type="CSGSphere3D" parent="CSGCombiner3D/Floor"]
+transform = Transform3D(0.0329997, 0.0707205, -9.28013e-05, -0.000118102, 19.7599, 1.44781e-06, 9.28059e-05, -0.00066805, 0.0329999, 0.180724, 0.367266, -0.0768066)
+operation = 2
+
+[node name="Back" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(40, 0, 0, 0, 10, 0, 0, 0, 1, -7.28363, 5.54946, -9.36935)
+size = Vector3(0.627457, 1, 1)
+
+[node name="Front" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(40, 0, 0, 0, 10, 0, 0, 0, 1, -7.18811, 5.54946, 15.5193)
+size = Vector3(0.627594, 1, 1)
+
+[node name="Hole" type="CSGSphere3D" parent="CSGCombiner3D/Front"]
+transform = Transform3D(0.05265, 0, 2.25879e-09, 0, 0.211, 0, 3.59019e-06, 0, 2.12, -0.138332, -0.402016, -0.376581)
+operation = 2
+
+[node name="Right" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(-1.74846e-06, 0, 1, 0, 10, 0, -40, 0, -4.37114e-08, -19.496, 5.54946, 3.10879)
+size = Vector3(0.638885, 1, 1)
+
+[node name="Left" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(-1.74846e-06, 0, 1, 0, 10, 0, -40, 0, -4.37114e-08, 5.11978, 5.54946, 3.0328)
+size = Vector3(0.633713, 1, 1)
+
+[node name="Player" parent="." instance=ExtResource("3_urytb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.152244, 0.988343, 0, -0.988343, 0.152244, 0, 22.0697, 0)
+
+[node name="Inteactable" parent="." instance=ExtResource("2_p7tl4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.2934, 1.27752, 6.21491)
+mesh = SubResource("CapsuleMesh_fajhk")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("4_kdfhr")
+camera_attributes = SubResource("CameraAttributesPractical_6gftl")
