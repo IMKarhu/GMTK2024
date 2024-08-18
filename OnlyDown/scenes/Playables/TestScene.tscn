@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://dxbxq6lqunu7a"]
+
+[ext_resource type="Material" uid="uid://d3drd2k25q1ls" path="res://materials/Green.tres" id="1_8efmt"]
+[ext_resource type="PackedScene" uid="uid://b7opgnj3e2v7m" path="res://scenes/Inteactable.tscn" id="2_ju4d3"]
+[ext_resource type="PackedScene" uid="uid://dej1gkscseh0b" path="res://scenes/Button.tscn" id="3_4hgei"]
+[ext_resource type="PackedScene" uid="uid://sq2ko64phwbd" path="res://scenes/Environment.tscn" id="4_olwwy"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_qdhju"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_qn0vx"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_0pqu5"]
+
+[node name="TestScene" type="Node"]
+
+[node name="MeshCombiner" type="CSGCombiner3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+material_override = ExtResource("1_8efmt")
+use_collision = true
+
+[node name="Floor" type="CSGBox3D" parent="MeshCombiner"]
+transform = Transform3D(39.9998, -8.94854e-05, 0.112493, 0.00377629, 0.999998, -0.0701892, -0.112486, 0.00175499, 39.9998, -7.22027, -0.000709322, 3.09193)
+size = Vector3(0.637146, 1, 0.647368)
+
+[node name="Back" type="CSGBox3D" parent="MeshCombiner"]
+transform = Transform3D(40, 0, 0, 0, 10, 0, 0, 0, 1, -7.28363, 5.54946, -9.36935)
+size = Vector3(0.627457, 1, 1)
+
+[node name="Front" type="CSGBox3D" parent="MeshCombiner"]
+transform = Transform3D(40, 0, 0, 0, 10, 0, 0, 0, 1, -7.18811, 5.54946, 15.5193)
+size = Vector3(0.627594, 1, 1)
+
+[node name="Right" type="CSGBox3D" parent="MeshCombiner"]
+transform = Transform3D(-1.74846e-06, 0, 1, 0, 10, 0, -40, 0, -4.37114e-08, -19.496, 5.54946, 3.10879)
+size = Vector3(0.638885, 1, 1)
+
+[node name="Left" type="CSGBox3D" parent="MeshCombiner"]
+transform = Transform3D(-1.74846e-06, 0, 1, 0, 10, 0, -40, 0, -4.37114e-08, 5.11978, 5.54946, 3.0328)
+size = Vector3(0.633713, 1, 1)
+
+[node name="InteactableSphere" parent="." instance=ExtResource("2_ju4d3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.963815, 1, -5)
+mesh = SubResource("SphereMesh_qdhju")
+
+[node name="InteactableCube" parent="." instance=ExtResource("2_ju4d3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9638, 1, -5)
+mesh = SubResource("BoxMesh_qn0vx")
+
+[node name="InteactableCylinder" parent="." instance=ExtResource("2_ju4d3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.91813, 1, -7.62502)
+mesh = SubResource("CylinderMesh_0pqu5")
+
+[node name="ShrinkButton" parent="." instance=ExtResource("3_4hgei")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -17.9689, 1.86851, 4.78284)
+
+[node name="GrowButton" parent="." instance=ExtResource("3_4hgei")]
+transform = Transform3D(-0.0510286, 0, 0.998697, 0, 1, 0, -0.998697, 0, -0.0510286, -18.258, 1.83752, -1.01449)
+Default_Operation = 0
+
+[node name="Environment" parent="." instance=ExtResource("4_olwwy")]

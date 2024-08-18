@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://sq2ko64phwbd"]
+
+[ext_resource type="Environment" uid="uid://ccn1cl0ss4sus" path="res://materials/world_environment.tres" id="1_4qo6i"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_s8c4g"]
+
+[node name="Environment" type="Node"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.152244, 0.988343, 0, -0.988343, 0.152244, 0, 22.0697, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_4qo6i")
+camera_attributes = SubResource("CameraAttributesPractical_s8c4g")

@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxi0iepvu1fnj"]
+
+[ext_resource type="PackedScene" uid="uid://csmmvj25wxkp4" path="res://scenes/Playables/Level1.tscn" id="1_ilygy"]
+[ext_resource type="Environment" uid="uid://ccn1cl0ss4sus" path="res://materials/world_environment.tres" id="2_ac2cw"]
+[ext_resource type="PackedScene" uid="uid://gctly1xsxkdg" path="res://scenes/Playables/Level2.tscn" id="2_rrrye"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_aqifn"]
+
+[node name="Stage" type="Node3D"]
+
+[node name="Level1" parent="." instance=ExtResource("1_ilygy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.4371, 0)
+
+[node name="Level2" parent="." instance=ExtResource("2_rrrye")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0086174, -16.5808, -0.116209)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.152244, 0.988343, 0, -0.988343, 0.152244, 0, 22.0697, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_ac2cw")
+camera_attributes = SubResource("CameraAttributesPractical_aqifn")

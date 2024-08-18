@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dej1gkscseh0b"]
 
 [ext_resource type="Script" path="res://src/Button.gd" id="1_fsp2c"]
-[ext_resource type="PackedScene" uid="uid://13lum5mkmnyh" path="res://Mesh/hollow_cube.glb" id="2_cbbj0"]
+[ext_resource type="PackedScene" uid="uid://13lum5mkmnyh" path="res://materials/meshes/hollow_cube.glb" id="2_cbbj0"]
 [ext_resource type="PackedScene" uid="uid://bni5l0q0lf7rp" path="res://scenes/InteractionArea.tscn" id="3_2cg4o"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_jcgwj"]

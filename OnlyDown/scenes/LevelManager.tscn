@@ -5,9 +5,10 @@ script/source = "extends Node
 class_name LevelManager
 
 func _on_body_entered(body):
-	print(body.get_groups().front())
+	#print(body.get_groups().front())
 	if body.get_groups().front() == \"player\":
-		get_tree().change_scene_to_file(\"res://ext/level_menu.tscn\")
+		body.scale = Vector3(1.0, 1.0, 1.0)
+		#get_tree().change_scene_to_file(\"res://ext/level_menu.tscn\")
 "
 
 [node name="LevelManager" type="Area3D"]

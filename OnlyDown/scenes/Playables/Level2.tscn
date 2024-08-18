@@ -1,18 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://csmmvj25wxkp4"]
+[gd_scene load_steps=4 format=3 uid="uid://gctly1xsxkdg"]
 
-[ext_resource type="Material" uid="uid://d3drd2k25q1ls" path="res://materials/Green.tres" id="2_fqvu5"]
-[ext_resource type="PackedScene" uid="uid://b7opgnj3e2v7m" path="res://scenes/Inteactable.tscn" id="2_p7tl4"]
-[ext_resource type="PackedScene" uid="uid://0oqd8n63li8q" path="res://scenes/LevelManager.tscn" id="5_mojpd"]
+[ext_resource type="Material" uid="uid://cwfeco8yb7dpg" path="res://materials/BabyPink.tres" id="1_80uie"]
+[ext_resource type="PackedScene" uid="uid://b7opgnj3e2v7m" path="res://scenes/Inteactable.tscn" id="2_pskoy"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_11klf"]
+[sub_resource type="BoxMesh" id="BoxMesh_bsmfs"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_yjcdj"]
-
-[node name="Level1" type="Node3D"]
+[node name="Level2" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="MeshCombiner" type="CSGCombiner3D" parent="."]
-material_override = ExtResource("2_fqvu5")
+material_override = ExtResource("1_80uie")
 use_collision = true
 
 [node name="Floor" type="CSGBox3D" parent="MeshCombiner"]
@@ -20,7 +17,7 @@ transform = Transform3D(39.9998, -8.94854e-05, 0.112493, 0.00377629, 0.999998, -
 size = Vector3(0.637146, 1, 0.647368)
 
 [node name="Goal" type="CSGCylinder3D" parent="MeshCombiner/Floor"]
-transform = Transform3D(0.0249999, 2.36052e-06, -7.03041e-05, -8.94723e-05, 0.999999, 0.00175499, 7.03078e-05, -4.38683e-05, 0.0249998, 0.219704, -0.107919, -0.156353)
+transform = Transform3D(0.0249999, 2.36052e-06, -7.03041e-05, -8.94723e-05, 0.999999, 0.00175499, 7.03078e-05, -4.38683e-05, 0.0249998, 0.218628, -0.0810565, 0.226305)
 operation = 2
 radius = 0.7
 height = 1.5
@@ -39,7 +36,7 @@ transform = Transform3D(40, 0, 0, 0, 10, 0, 0, 0, 1, -7.18811, 5.54946, 15.5193)
 size = Vector3(0.627594, 1, 1)
 
 [node name="Hole" type="CSGSphere3D" parent="MeshCombiner/Front"]
-transform = Transform3D(0.05265, 0, 2.25879e-09, 0, 0.211, 0, 3.59019e-06, 0, 2.12, -0.138332, -0.402016, -0.376581)
+transform = Transform3D(0.05265, 0, 2.25879e-09, 0, 0.211, 0, 3.59019e-06, 0, 2.12, 0.107632, -0.18115, -0.376581)
 operation = 2
 
 [node name="Right" type="CSGBox3D" parent="MeshCombiner"]
@@ -50,12 +47,6 @@ size = Vector3(0.638885, 1, 1)
 transform = Transform3D(-1.74846e-06, 0, 1, 0, 10, 0, -40, 0, -4.37114e-08, 5.11978, 5.54946, 3.0328)
 size = Vector3(0.633713, 1, 1)
 
-[node name="Inteactable" parent="." instance=ExtResource("2_p7tl4")]
+[node name="Inteactable" parent="." instance=ExtResource("2_pskoy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.6171, 2, 11.321)
-mesh = SubResource("CapsuleMesh_11klf")
-
-[node name="LevelManager" parent="." instance=ExtResource("5_mojpd")]
-transform = Transform3D(30, 0, 0, 0, 1, 0, 0, 0, 30, -6.67041, -2.2463, 2.14226)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelManager"]
-shape = SubResource("BoxShape3D_yjcdj")
+mesh = SubResource("BoxMesh_bsmfs")

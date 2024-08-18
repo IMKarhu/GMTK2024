@@ -37,7 +37,8 @@ script = ExtResource("1_bh3ql")
 [node name="Label" type="Label" parent="."]
 visible = false
 layout_mode = 2
-text = "1"
+text = "Start
+"
 label_settings = SubResource("LabelSettings_nk7u7")
 horizontal_alignment = 1
 vertical_alignment = 1

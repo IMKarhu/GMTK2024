@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://13lum5mkmnyh"
-path="res://.godot/imported/hollow_cube.glb-1716bcb4aca2eab2d1423957248e6956.scn"
+path="res://.godot/imported/hollow_cube.glb-49c434d28878eb6af1b1a5fd09ea9750.scn"
 
 [deps]
 
-source_file="res://Mesh/hollow_cube.glb"
-dest_files=["res://.godot/imported/hollow_cube.glb-1716bcb4aca2eab2d1423957248e6956.scn"]
+source_file="res://materials/meshes/hollow_cube.glb"
+dest_files=["res://.godot/imported/hollow_cube.glb-49c434d28878eb6af1b1a5fd09ea9750.scn"]
 
 [params]
 

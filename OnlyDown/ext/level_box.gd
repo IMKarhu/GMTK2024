@@ -29,5 +29,6 @@ func _on_gui_input(event):
 		return
 	if event is InputEventMouseButton and event.pressed:
 		level_selected.emit(level_num)
-		get_tree().change_scene_to_file("res://scenes/Playables/Level" + str(level_num) + ".tscn")
+		#get_tree().change_scene_to_file("res://scenes/Playables/Level" + str(level_num) + ".tscn")
+		get_tree().change_scene_to_file("res://scenes/Playables/stage.tscn")
 		print("Clicked level ", level_num)
