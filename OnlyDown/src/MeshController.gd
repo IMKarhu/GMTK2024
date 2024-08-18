@@ -2,25 +2,20 @@ extends Node
 class_name MeshController
 
 @export var collision_shape: CollisionShape3D
-
 @export var mesh_instance: MeshInstance3D
 @onready var flagPacked = preload("res://scenes/Inteactable.tscn")
-@onready var player = get_tree().get_first_node_in_group("player")
-var meshes: Array[Mesh]
+var meshes: Array[Mesh] = []
 
 func _input(event):
 	if event.is_action_pressed("changeForm"):
-		toggle_mesh()
+		if meshes.size() > 1:
+			toggle_mesh()
 
 func _ready():
-	meshes.push_back(player.get_child(0).mesh)
+	meshes.push_back(mesh_instance.mesh)
 
-#currentMesh = meshes[0]
-#mesh2 = meshes[1]
 # Function to toggle between meshes
 func toggle_mesh():
-	if meshes.size() == 1:
-		return
 	# Check if currentMesh should be swapped with mesh2
 	if mesh_instance.mesh == meshes[0]:
 		change_mesh(meshes[1])
@@ -29,11 +24,6 @@ func toggle_mesh():
 
 # Function to change the mesh and spawn the old one if necessary
 func change_mesh(new_mesh: Mesh) -> void:
-	if meshes.size() == 1:
-		meshes.push_back(new_mesh)
-		return
-
-	# Update the mesh instance and collision shape
 	mesh_instance.mesh = new_mesh
 	update_collision_shape(new_mesh)
 
@@ -44,19 +34,29 @@ func remove_numeric_suffix(mesh_name: String) -> String:
 	if index != -1:
 		return mesh_name.substr(0, index)
 	return mesh_name
-
-# Function to change to a specific mesh, avoiding duplicates
-func change_to_mesh(new_mesh: Mesh) -> void:
+	
+func resolveNames(new_mesh: Mesh, current: Mesh, oldMesh: Mesh = null) -> bool:
 	var new_name = remove_numeric_suffix(new_mesh.to_string())
-	var current_name = remove_numeric_suffix(meshes[0].to_string())
+	var current_name = remove_numeric_suffix(current.to_string())
 	var mesh2_name = ''
-	if meshes.size() > 1:
-		mesh2_name = remove_numeric_suffix(meshes[1].to_string())
-		#spawn_oldMesh(meshes[0])
+	if oldMesh != null:
+		mesh2_name = remove_numeric_suffix(oldMesh.to_string())
+		#spawn_oldMesh(current)
 	# Avoid changing to the same mesh
 	if new_name == current_name or new_name == mesh2_name:
 		print("Trying to change to the same mesh")
-		return
+		return false
+	return true
+
+# Function to change to a specific mesh, avoiding duplicates
+func change_to_mesh(new_mesh: Mesh) -> void:
+	if meshes.size() == 1:
+		if not resolveNames(new_mesh, meshes[0]):
+			return
+		meshes.push_back(new_mesh)
+	else:
+		resolveNames(new_mesh, meshes[0], meshes[1])
+		#meshes[1] = new_mesh
 	# Perform the mesh change, update states correctly
 	change_mesh(new_mesh)
 
